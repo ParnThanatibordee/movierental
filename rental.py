@@ -12,7 +12,7 @@ class Rental:
 	
 	def __init__(self, movie, days_rented): 
 		"""Initialize a new movie rental object for
-		   a movie with known rental period (daysRented).
+		a movie with known rental period (daysRented).
 		"""
 		self.movie = movie
 		self.days_rented = days_rented
