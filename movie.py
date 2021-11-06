@@ -1,5 +1,4 @@
 from enum import Enum
-import logging
 
 
 class PriceCode(Enum):
@@ -28,29 +27,12 @@ class PriceCode(Enum):
 class Movie:
     """A movie available for rent."""
 
-    def __init__(self, title, price_code: PriceCode):
+    def __init__(self, title):
         # Initialize a new movie.
         self.title = title
-        self.price_code = price_code
-
-    def get_price_code(self):
-        # get the price code
-        return self.price_code
 
     def get_title(self):
         return self.title
-
-    def get_price(self, days_rented):
-        # compute rental change
-        if isinstance(self.price_code, PriceCode):
-            return self.price_code.price(days_rented)
-        else:
-            log = logging.getLogger()
-            log.error(f"Movie {self} has unrecognized priceCode {self.get_price_code()}")
-
-    def get_frequent(self, days_rented):
-        # award renter points
-        return self.price_code.frequent(days_rented)
 
     def __str__(self):
         return self.title
