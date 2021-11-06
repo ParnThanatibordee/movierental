@@ -8,11 +8,11 @@ from customer import Customer
 
 def make_movies():
     movies = [
-        Movie("The Irishman"),
-        Movie("CitizenFour"),
-        Movie("Frozen"),
-        Movie("El Camino"),
-        Movie("Particle Fever")
+        Movie("The Irishman", 2000, ['demo'], 'demo'),
+        Movie("CitizenFour", 2000, ['demo'], 'demo'),
+        Movie("Frozen", 2000, ['demo'], 'demo'),
+        Movie("El Camino", 2000, ['demo'], 'demo'),
+        Movie("Particle Fever", 2000, ['demo'], 'demo')
     ]
     return movies
 

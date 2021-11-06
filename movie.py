@@ -27,12 +27,29 @@ class PriceCode(Enum):
 class Movie:
     """A movie available for rent."""
 
-    def __init__(self, title):
+    def __init__(self, title, year, genre, is_genre):
         # Initialize a new movie.
-        self.title = title
+        self._title = title
+        self._year = year
+        self._genre = genre
+        self._is_genre = is_genre
+
+    def is_genre(self):
+        if self._is_genre in self._genre:
+            return True
+        return False
 
     def get_title(self):
-        return self.title
+        return self._title
+
+    def get_year(self):
+        return self._year
+
+    def get_genre(self):
+        return self._genre
+
+    def get_is_genre(self):
+        return self._is_genre
 
     def __str__(self):
-        return self.title
+        return self._title
