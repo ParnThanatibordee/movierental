@@ -1,4 +1,30 @@
 from enum import Enum
+import csv
+
+
+class MovieCatalog:
+    """Movie catalog from csv file."""
+
+    def __init__(self):
+        self.data = self.initial_movie()
+
+    def initial_movie(self):
+        temp = []
+        data = []
+        with open('movies.csv') as f:
+            rows = csv.reader(f)
+            for r in rows:
+                temp.append(r)
+        for i in temp[1:]:
+            genre = i[3].split('|')
+            data.append(Movie(i[1], int(i[2]), genre))
+        return data
+
+    def get_movie(self, title):
+        for j in self.data:
+            if j.get_title() == title:
+                return j
+        return None
 
 
 class PriceCode(Enum):
@@ -33,8 +59,8 @@ class Movie:
         self._year = year
         self._genre = genre
 
-    def is_genre(self, g):
-        if g in self._genre:
+    def is_genre(self, string):
+        if string in self._genre:
             return True
         return False
 
