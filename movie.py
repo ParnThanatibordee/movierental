@@ -1,4 +1,5 @@
 from enum import Enum
+import datetime
 import csv
 
 
@@ -49,6 +50,18 @@ class PriceCode(Enum):
         frequent = self.value["frp"]
         return frequent(days)
 
+    @classmethod
+    def for_movie(self, movie):
+        current_date_time = datetime.datetime.now()
+        date = current_date_time.date()
+        if date.year == movie.get_year():
+            price_code = self.new_release
+        elif movie.is_genre("Children"):
+            price_code = self.childrens
+        else:
+            price_code = self.normal
+        return price_code
+
 
 class Movie:
     """A movie available for rent."""
@@ -75,3 +88,16 @@ class Movie:
 
     def __str__(self):
         return self._title
+
+
+if __name__ == '__main__':
+    catalog = MovieCatalog()
+    movie = catalog.get_movie("Eternals")
+    price_code = PriceCode.for_movie(movie)
+    print(movie, 'is', price_code)
+    movie = catalog.get_movie("Deadpool")
+    price_code = PriceCode.for_movie(movie)
+    print(movie, 'is', price_code)
+    movie = catalog.get_movie("Mulan")
+    price_code = PriceCode.for_movie(movie)
+    print(movie, 'is', price_code)
